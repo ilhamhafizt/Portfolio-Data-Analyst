@@ -1,146 +1,99 @@
-# Panduan Setup Backend — Portfolio Ilham Hafizt
+# 📊 Data Analyst Portfolio — Ilham Hafizt
 
-## Struktur Folder
+Welcome to my portfolio project!  
+This website showcases my work, skills, and projects as a **Data Analyst**, including data processing, analysis, and backend integration using Python and SQL Server.
 
-```
-portfolio/
-├── index.html          ← Frontend (sudah diupdate)
-├── js/
-│   └── script.js       ← sudah diupdate: fetch ke Flask API
-├── css/
-│   └── style.css       ← tidak berubah
-├── assets/
-│   └── profil.png
+---
+
+## 🚀 About This Project
+
+This portfolio is not just a static website — it integrates:
+
+- 📈 Data handling using Python (Flask)
+- 🗄️ Database management with SQL Server
+- 🔗 API integration for real-time data submission
+- 🌐 Frontend visualization using HTML, CSS, JavaScript
+
+The contact form is connected to a database, simulating a real-world data collection system.
+
+---
+
+## 🧠 Skills Highlighted
+
+- **Data Analysis**: Python (basic processing logic, Pandas)
+- **Database**: SQL Server (DDL, DML, query)
+- **Backend**: Flask API development
+- **Data Collection**: Form → API → Database pipeline
+- **Tools**: SSMS, VS Code, GitHub
+
+---
+
+## 📂 Project Structure
+portfolio-data-analyst/
+├── index.html # Frontend UI
+├── js/script.js # API integration
+├── css/style.css # Styling
+├── assets/ # Images
 │
-├── app.py              ← Flask server (file baru)
-├── .env                ← Konfigurasi DB (rename dari env.txt)
-├── requirements.txt    ← Dependencies Python (file baru)
-└── setup_database.sql  ← Script SQL untuk SSMS (file baru)
-```
+├── app.py # Flask backend
+├── .env # Database configuration
+├── requirements.txt # Python dependencies
+└── setup_database.sql # Database setup
 
 ---
 
-## Prasyarat
+## ⚙️ How It Works (Data Flow)
 
-| Software | Versi | Link |
-|---|---|---|
-| Python | 3.9+ | https://www.python.org/downloads/ |
-| SQL Server | Express / Developer | sudah terinstall (SSMS) |
-| ODBC Driver 17 | for SQL Server | https://aka.ms/downloadmsodbcsql |
+1. User submits contact form  
+2. Data sent via API (Flask)  
+3. Backend processes & validates data  
+4. Data stored in SQL Server  
+5. Data can be retrieved via API  
 
-> Cek ODBC Driver: buka **ODBC Data Sources (64-bit)** → tab **Drivers**
-
----
-
-## Langkah Setup
-
-### 1 — Buat Database di SSMS
-
-Buka SSMS → connect ke server → buka file `setup_database.sql` → tekan **F5**.
-
-Script akan membuat:
-- Database `portfolio_db`
-- Tabel `pesan_kontak` dengan kolom: `id, nama, email, subjek, pesan, ip_pengirim, dibaca, created_at`
+➡️ This simulates a **real data pipeline (collection → storage → access)**
 
 ---
 
-### 2 — Rename & Edit File Konfigurasi
+## 🛠️ Setup Instructions
 
-Rename `env.txt` → `.env`, lalu edit isinya:
+### 1. Setup Database
 
-```env
-DB_AUTH_MODE=sql                          # atau "windows" jika pakai Windows Auth
+Run `setup_database.sql` in SQL Server (SSMS)
+
+This will create:
+- Database: `portfolio_db`
+- Table: `pesan_kontak`
+
+---
+
+### 2. Configure Environment
+
+Rename `env.txt` → `.env`
+
+DB_AUTH_MODE=sql
 DB_DRIVER=ODBC Driver 17 for SQL Server
-DB_SERVER=localhost\SQLEXPRESS            # sesuaikan dengan nama server di SSMS
+DB_SERVER=localhost\SQLEXPRESS
 DB_NAME=portfolio_db
 DB_USER=sa
-DB_PASSWORD=password_kamu_disini          # kosongkan jika pakai Windows Auth
-```
-
-**Tips nama server yang umum:**
-
-| Kondisi | Nilai DB_SERVER |
-|---|---|
-| SQL Server Express | `localhost\SQLEXPRESS` |
-| Nama PC spesifik | `NAMA-PC\SQLEXPRESS` |
-| SQL Server Standard/Developer | `localhost` |
+DB_PASSWORD=your_password
 
 ---
 
-### 3 — Install Dependencies Python
+### 3. Install Dependencies
 
 ```bash
-# Buat virtual environment (disarankan)
-python -m venv venv
-
-# Aktifkan
-venv\Scripts\activate       # Windows
-source venv/bin/activate    # Mac/Linux
-
-# Install library
 pip install -r requirements.txt
-```
 
----
-
-### 4 — Jalankan Flask Server
-
-```bash
+### 4. Run Backend
 python app.py
-```
 
-Output sukses:
-```
-====================================================
-  🚀  Portfolio Backend  —  Flask + SQL Server
-====================================================
-  Server DB  : localhost\SQLEXPRESS
-  Database   : portfolio_db
-  Auth Mode  : SQL
-  Port       : 5000
-====================================================
+### 5. Run Frontend
 
-✅  Tabel 'pesan_kontak' siap.
- * Running on http://0.0.0.0:5000
-```
+Open index.html using Live Server (VS Code recommended)
 
----
+🔌 API Endpoints
+Method	Endpoint	Description
+POST	/api/contact	Store user message
+GET	/api/messages	Retrieve messages
+GET	/api/health	Check API status
 
-### 5 — Buka Website & Coba Kirim Pesan
-
-Buka `index.html` di browser (gunakan **Live Server** di VS Code agar CORS tidak bermasalah).
-
-Isi form **"Hubungi Saya"** → klik **Kirim Pesan** → cek di SSMS:
-
-```sql
-USE portfolio_db;
-SELECT * FROM pesan_kontak ORDER BY created_at DESC;
-```
-
----
-
-## API Endpoints
-
-| Method | URL | Fungsi |
-|---|---|---|
-| `POST` | `http://localhost:5000/api/contact` | Simpan pesan dari form |
-| `GET` | `http://localhost:5000/api/messages` | Lihat semua pesan masuk |
-| `GET` | `http://localhost:5000/api/health` | Cek status server & DB |
-
----
-
-## Troubleshooting
-
-**`pyodbc.InterfaceError: IM002 — Data source name not found`**
-→ ODBC Driver belum terinstall atau nama di `.env` salah.
-→ Download: https://aka.ms/downloadmsodbcsql
-
-**`Login failed for user 'sa'`**
-→ Password salah, atau akun `sa` dinonaktifkan.
-→ Coba `DB_AUTH_MODE=windows` jika pakai Windows Auth.
-
-**`Connection refused` di browser (Network Error)**
-→ Flask belum dijalankan. Pastikan `python app.py` sudah berjalan.
-
-**Pesan tidak muncul di database tapi form sukses**
-→ Buka DevTools (F12) → tab Network → cek response dari `/api/contact`.
