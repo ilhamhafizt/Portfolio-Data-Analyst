@@ -21,7 +21,7 @@ The contact form is connected to a database, simulating a real-world data collec
 ## 🧠 Skills Highlighted
 
 - **Data Analysis**: Python (basic processing logic, Pandas)
-- **Database**: SQL Server (DDL, DML, query)
+- **Database**: SQL Server (query)
 - **Backend**: Flask API development
 - **Data Collection**: Form → API → Database pipeline
 - **Tools**: SSMS, VS Code, GitHub
@@ -30,17 +30,19 @@ The contact form is connected to a database, simulating a real-world data collec
 
 ## 📂 Project Structure
 portfolio-data-analyst/
-├── index.html # Frontend UI
-├── js/script.js # API integration
-├── css/style.css # Styling
-├── assets/ # Images
 │
-├── app.py # Flask backend
-├── .env # Database configuration
-├── requirements.txt # Python dependencies
-└── setup_database.sql # Database setup
-
----
+├── index.html              # Frontend UI
+├── css/
+│   └── style.css           # Styling
+├── js/
+│   └── script.js           # API integration
+├── assets/                 # Images & assets
+│
+├── app.py                  # Flask backend
+├── requirements.txt        # Python dependencies
+├── setup_database.sql      # Database setup
+├── .gitignore              # Ignored files
+└── README.md               # Project documentation
 
 ## ⚙️ How It Works (Data Flow)
 
@@ -56,7 +58,7 @@ portfolio-data-analyst/
 
 ## 🛠️ Setup Instructions
 
-### 1. Setup Database
+## Setup Database
 
 Run `setup_database.sql` in SQL Server (SSMS)
 
@@ -66,34 +68,39 @@ This will create:
 
 ---
 
-### 2. Configure Environment
+## ⚙️ Configure Environment
 
-Rename `env.txt` → `.env`
+Create a `.env` file in the root directory and add the following configuration:
 
-DB_AUTH_MODE=sql
-DB_DRIVER=ODBC Driver 17 for SQL Server
-DB_SERVER=localhost\SQLEXPRESS
-DB_NAME=portfolio_db
-DB_USER=sa
-DB_PASSWORD=your_password
+DB_AUTH_MODE=sql  
+DB_DRIVER=ODBC Driver 17 for SQL Server  
+DB_SERVER=localhost\SQLEXPRESS  
+DB_NAME=portfolio_db  
+DB_USER=sa  
+DB_PASSWORD=your_password  
+
+⚠️ Important: Do not upload `.env` to GitHub. Make sure it is included in `.gitignore`.
 
 ---
 
-### 3. Install Dependencies
+## 📦 Install Dependencies
+
+Run the following command to install all required Python libraries:
 
 ```bash
 pip install -r requirements.txt
+```
 
-### 4. Run Backend
+---
+
+## 🚀 Run Backend
+```bash
 python app.py
+```
 
-### 5. Run Frontend
+---
 
-Open index.html using Live Server (VS Code recommended)
+## 🌐 Run Frontend
+Open index.html using Live Server (recommended in VS Code) or open it directly in your browser.
 
-🔌 API Endpoints
-Method	Endpoint	Description
-POST	/api/contact	Store user message
-GET	/api/messages	Retrieve messages
-GET	/api/health	Check API status
 
