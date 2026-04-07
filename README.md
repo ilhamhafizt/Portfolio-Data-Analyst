@@ -29,6 +29,7 @@ The contact form is connected to a database, simulating a real-world data collec
 ---
 
 ## 📂 Project Structure
+```
 portfolio-data-analyst/
 │
 ├── index.html              # Frontend UI
@@ -43,6 +44,7 @@ portfolio-data-analyst/
 ├── setup_database.sql      # Database setup
 ├── .gitignore              # Ignored files
 └── README.md               # Project documentation
+```
 
 ## ⚙️ How It Works (Data Flow)
 
