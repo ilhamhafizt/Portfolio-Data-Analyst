@@ -441,7 +441,7 @@ document.querySelectorAll('.mobile-link').forEach(l =>
 
 // Contact Form  —  kirim data ke Flask backend
 // URL Flask — sesuaikan jika deploy ke hosting
-const API_URL = 'http://localhost:5000/api/contact';
+const API_URL = 'https://NAMA-APP-KAMU.railway.app/api/contact';
 
 async function handleSubmit(e) {
     e.preventDefault();

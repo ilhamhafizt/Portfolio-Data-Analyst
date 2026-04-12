@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Performance Dashboard | Ilham Hafizt</title>
+    <link rel="shortcut icon" href="/assets/shortcut.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/project/project1/css/project1.css">
+</head>
+<body>
+    <!-- ═══════ NAVBAR ═══════ -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="/index.html" class="nav-logo">Ilham Hafizt<span>.</span></a>
+        <div class="nav-right">
+          <!-- Language toggle — identical style to main portfolio -->
+          <div class="lang-toggle">
+            <button id="btn-id" class="lang-btn active" onclick="setLang('id')">ID</button>
+            <button id="btn-en" class="lang-btn"        onclick="setLang('en')">EN</button>
+          </div>
+          <a href="/index.html#projects" class="nav-back" target="_blank">
+            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+            </svg>
+            <span class="nav-back-text" data-i18n="nav_back">Kembali ke Portfolio</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════ HERO ═══════ -->
+    <div class="project-hero">
+      <div class="project-hero-inner">
+        <span class="badge" style="margin-bottom:14px;display:inline-block" data-i18n="hero_badge">Project — Data Analyst</span>
+        <h1 class="hero-title">Sales Performance Dashboard</h1>
+        <p class="hero-desc" data-i18n="hero_desc">
+          Analisis end-to-end kinerja penjualan 1.806 transaksi — mulai dari data cleaning dengan Python,
+          query SQL Server, hingga dashboard interaktif di Looker Studio yang membantu tim bisnis membuat
+          keputusan berbasis data.
+        </p>
+        <div class="tag-wrap">
+          <span class="tag">🐍 Python</span>
+          <span class="tag">🗄️ SQL Server</span>
+          <span class="tag">📊 Looker Studio</span>
+          <span class="tag">🧹 Data Cleaning</span>
+          <span class="tag">📈 Dashboard</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">T-SQL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <div class="content">
+      <div class="two-col">
+
+        <!-- ── LEFT: main column ── -->
+        <div class="main-col">
+
+          <!-- DASHBOARD MOCKUP -->
+          <div>
+            <span class="label" data-i18n="sec_vis">Visualisasi</span>
+            <div class="section-title">Sales Performance Dashboard</div>
+
+            <div class="dashboard-wrap">
+              <div class="db-topbar">
+                <div class="db-dot" style="background:#f87171"></div>
+                <div class="db-dot" style="background:#fbbf24"></div>
+                <div class="db-dot" style="background:#4ade80"></div>
+                <span class="db-title">🔍 Looker Studio — Sales Performance Dashboard | Ilham Hafizt</span>
+              </div>
+              <div class="db-body">
+                <div class="db-header">
+                  <div>
+                    <div class="db-header-title">📊 Sales Performance Dashboard</div>
+                    <div class="db-header-sub" data-i18n="db_sub">Data: Jan 2023 – Des 2025 &nbsp;|&nbsp; 1.806 Transaksi</div>
+                  </div>
+                  <div class="db-filter">
+                    <button class="db-chip active" data-i18n="chip_all">2023–2025</button>
+                    <button class="db-chip" data-i18n="chip_online">Online</button>
+                    <button class="db-chip" data-i18n="chip_region">Semua Wilayah</button>
+                  </div>
+                </div>
+
+                <!-- KPI -->
+                <div class="kpi-grid">
+                  <div class="kpi-tile">
+                    <div class="kpi-label" data-i18n="kpi_sales">Total Net Sales</div>
+                    <div class="kpi-value">Rp 835,8M</div>
+                    <div class="kpi-delta kpi-up">↑ +12.4% YoY</div>
+                  </div>
+                  <div class="kpi-tile">
+                    <div class="kpi-label" data-i18n="kpi_orders">Total Orders</div>
+                    <div class="kpi-value">1.806</div>
+                    <div class="kpi-delta kpi-up">↑ +8.1% YoY</div>
+                  </div>
+                  <div class="kpi-tile">
+                    <div class="kpi-label" data-i18n="kpi_rating">Avg Rating</div>
+                    <div class="kpi-value">3.00 ⭐</div>
+                    <div class="kpi-delta" style="color:#9ca3af" data-i18n="kpi_stable">— stabil</div>
+                  </div>
+                  <div class="kpi-tile">
+                    <div class="kpi-label" data-i18n="kpi_disc">Discount Rate</div>
+                    <div class="kpi-value">13.6%</div>
+                    <div class="kpi-delta kpi-down" data-i18n="kpi_disc_delta">↓ -0.8% vs target</div>
+                  </div>
+                </div>
+
+                <!-- Charts row 1 -->
+                <div class="chart-grid">
+                  <div class="chart-box">
+                    <div class="chart-box-title" data-i18n="chart_line">📈 Tren Net Sales Bulanan (2025)</div>
+                    <div class="chart-canvas-wrap"><canvas id="lineChart"></canvas></div>
+                  </div>
+                  <div class="chart-box">
+                    <div class="chart-box-title" data-i18n="chart_donut">🍩 Distribusi Kategori</div>
+                    <div class="chart-canvas-wrap"><canvas id="donutChart"></canvas></div>
+                  </div>
+                </div>
+
+                <!-- Charts row 2 -->
+                <div class="chart-grid-3">
+                  <div class="chart-box">
+                    <div class="chart-box-title" data-i18n="chart_bar">🏆 Top 5 Produk by Net Sales</div>
+                    <div class="chart-canvas-wrap"><canvas id="barChart"></canvas></div>
+                  </div>
+                  <div class="chart-box">
+                    <div class="chart-box-title" data-i18n="chart_region">📍 Sales by Region</div>
+                    <div style="margin-top:4px">
+                      <div class="region-bar-row"><div class="region-bar-label"><span>Jawa Barat</span><span>21.3%</span></div><div class="region-bar-track"><div class="region-bar-fill" style="width:100%;background:#4ade80"></div></div></div>
+                      <div class="region-bar-row"><div class="region-bar-label"><span>Jawa Timur</span><span>20.7%</span></div><div class="region-bar-track"><div class="region-bar-fill" style="width:97%;background:#4ade80"></div></div></div>
+                      <div class="region-bar-row"><div class="region-bar-label"><span>DKI Jakarta</span><span>19.8%</span></div><div class="region-bar-track"><div class="region-bar-fill" style="width:93%;background:#22c55e"></div></div></div>
+                      <div class="region-bar-row"><div class="region-bar-label"><span>Bali</span><span>9.6%</span></div><div class="region-bar-track"><div class="region-bar-fill" style="width:45%;background:#16a34a"></div></div></div>
+                      <div class="region-bar-row"><div class="region-bar-label"><span>Sulawesi Selatan</span><span>9.6%</span></div><div class="region-bar-track"><div class="region-bar-fill" style="width:45%;background:#15803d"></div></div></div>
+                      <div class="region-bar-row"><div class="region-bar-label"><span>Kalimantan Timur</span><span>9.5%</span></div><div class="region-bar-track"><div class="region-bar-fill" style="width:44%;background:#166534"></div></div></div>
+                      <div class="region-bar-row"><div class="region-bar-label"><span>Sumatera Utara</span><span>9.0%</span></div><div class="region-bar-track"><div class="region-bar-fill" style="width:42%;background:#166534"></div></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div class="chart-box" style="margin-top:12px;overflow-x:auto">
+                  <div class="chart-box-title" data-i18n="chart_lb">👤 Leaderboard Salesperson</div>
+                  <table class="db-table">
+                    <thead>
+                      <tr>
+                        <th data-i18n="th_rank">Rank</th>
+                        <th data-i18n="th_name">Salesperson</th>
+                        <th class="col-orders" data-i18n="th_orders">Orders</th>
+                        <th data-i18n="th_sales">Net Sales</th>
+                        <th data-i18n="th_rating">Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><span class="rank-badge">#1</span></td><td>Ahmad Fauzi</td>  <td class="col-orders">~185</td><td>Rp 216,6M</td><td>⭐ 3.0</td></tr>
+                      <tr><td><span class="rank-badge">#2</span></td><td>Budi Santoso</td> <td class="col-orders">~170</td><td>Rp 166,5M</td><td>⭐ 3.0</td></tr>
+                      <tr><td><span class="rank-badge">#3</span></td><td>Nurul Hidayah</td><td class="col-orders">~165</td><td>Rp 139,8M</td><td>⭐ 3.1</td></tr>
+                      <tr><td><span class="rank-badge">#4</span></td><td>Siti Rahayu</td>  <td class="col-orders">~150</td><td>Rp 99,3M</td> <td>⭐ 3.0</td></tr>
+                      <tr><td><span class="rank-badge">#5</span></td><td>Riko Pratama</td> <td class="col-orders">~145</td><td>Rp 98,4M</td> <td>⭐ 2.9</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div style="text-align:center;margin-top:12px;padding-top:10px;border-top:1px solid #2d3748">
+                  <span style="font-size:0.6rem;color:#4b5563" data-i18n="db_footer">Powered by Looker Studio · Data Source: SQL Server · Last updated: Des 2025</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <span>ℹ️</span>
+              <span data-i18n="note_box">Dashboard di atas merepresentasikan tampilan Looker Studio. Untuk versi interaktif sesungguhnya, import <code>sales_data_clean.csv</code> ke Google Looker Studio.</span>
+            </div>
+          </div>
+
+          <!-- WORKFLOW -->
+          <div class="card">
+            <span class="label" data-i18n="sec_workflow">Alur Kerja</span>
+            <div class="section-title" data-i18n="workflow_title">Project Workflow</div>
+            <div class="steps">
+              <div class="step">
+                <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
+                <div>
+                  <div class="step-title" data-i18n="step1_title">Dataset Generation & Identifikasi Masalah</div>
+                  <div class="step-desc" data-i18n="step1_desc">Dataset sintetis 2.500 baris dibuat dengan sengaja memiliki <em>dirty data</em>: duplikat, format tanggal tidak konsisten, nilai negatif, karakter non-numerik, dan inkonsistensi kapitalisasi.</div>
+                  <span class="step-tag">🐍 Python · random · csv</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
+                <div>
+                  <div class="step-title" data-i18n="step2_title">Data Cleaning dengan Python & Pandas</div>
+                  <div class="step-desc" data-i18n="step2_desc">Script <code style="background:var(--g50);padding:1px 5px;border-radius:4px;font-size:0.75rem">data_cleaning.py</code> membersihkan 10 duplikat, 247 tanggal invalid, 193 harga kotor, 244 qty tidak valid. Output: <strong>1.806 baris bersih</strong> + kolom turunan.</div>
+                  <span class="step-tag">🧹 Pandas · NumPy · Regex</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
+                <div>
+                  <div class="step-title" data-i18n="step3_title">Analisis dengan SQL Server (T-SQL)</div>
+                  <div class="step-desc" data-i18n="step3_desc">Data bersih diimpor ke SQL Server. 10 query analitik dibuat mencakup KPI ringkasan, tren MoM, ranking produk & salesperson, analisis YoY, dan kontribusi per wilayah.</div>
+                  <span class="step-tag">🗄️ T-SQL · Window Functions · CTE · BULK INSERT</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-left"><div class="step-num">4</div><div class="step-line"></div></div>
+                <div>
+                  <div class="step-title" data-i18n="step4_title">Visualisasi di Looker Studio</div>
+                  <div class="step-desc" data-i18n="step4_desc">Dashboard interaktif di Google Looker Studio menampilkan 4 KPI tile, tren bulanan, distribusi kategori, top produk, heatmap wilayah, dan leaderboard salesperson.</div>
+                  <span class="step-tag">📊 Looker Studio · Charts · Filters · Slicers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PYTHON CODE -->
+          <div class="card">
+            <span class="label" data-i18n="sec_code">Kode</span>
+            <div class="section-title" data-i18n="py_title">Cuplikan Data Cleaning (Python)</div>
+            <div class="code-block"><span class="cc"># ── Parsing multi-format tanggal ────────────────────────────</span>
+    <span class="ck">def</span> <span class="cf">parse_date</span>(val):
+        <span class="ck">if</span> pd.isna(val) <span class="ck">or</span> str(val).strip() <span class="ck">in</span> (<span class="cs">""</span>, <span class="cs">"N/A"</span>):
+            <span class="ck">return</span> pd.NaT
+        formats = [<span class="cs">"%Y-%m-%d"</span>, <span class="cs">"%d/%m/%Y"</span>, <span class="cs">"%m-%d-%Y"</span>, <span class="cs">"%Y%m%d"</span>]
+        <span class="ck">for</span> fmt <span class="ck">in</span> formats:
+            <span class="ck">try</span>: <span class="ck">return</span> pd.to_datetime(val, format=fmt)
+            <span class="ck">except</span>: <span class="ck">continue</span>
+        <span class="ck">return</span> pd.NaT
+
+    <span class="cc"># ── Bersihkan unit price (hapus "Rp", koma, simbol) ─────────</span>
+    <span class="ck">def</span> <span class="cf">clean_price</span>(val):
+        val = re.sub(<span class="cs">r"[Rp\s,]"</span>, <span class="cs">""</span>, str(val))
+        <span class="ck">try</span>:
+            v = <span class="cf">float</span>(val)
+            <span class="ck">return</span> v <span class="ck">if</span> v &gt; <span class="cn">0</span> <span class="ck">else</span> np.nan
+        <span class="ck">except</span>: <span class="ck">return</span> np.nan
+
+    <span class="cc"># ── Imputasi rating dengan median per produk ─────────────────</span>
+    df[<span class="cs">"rating"</span>] = df.groupby(<span class="cs">"product_name"</span>)[<span class="cs">"rating"</span>].transform(
+        <span class="ck">lambda</span> x: x.fillna(x.median())
+    )
+
+    <span class="cc"># ── Kolom turunan: net_sales ──────────────────────────────────</span>
+    df[<span class="cs">"net_sales"</span>] = (df[<span class="cs">"unit_price"</span>] * df[<span class="cs">"quantity"</span>]
+                      * (<span class="cn">1</span> - df[<span class="cs">"discount_percent"</span>] / <span class="cn">100</span>))</div>
+          </div>
+
+          <!-- SQL CODE -->
+          <div class="card">
+            <span class="label" data-i18n="sec_code">Kode</span>
+            <div class="section-title" data-i18n="sql_title">Cuplikan SQL — MoM Growth & Ranking</div>
+            <div class="code-block"><span class="cc">-- Tren bulanan + Month-over-Month Growth</span>
+    <span class="ck">SELECT</span>
+        order_year, order_month, order_month_name,
+        <span class="cf">SUM</span>(net_sales)           <span class="ck">AS</span> net_sales,
+        <span class="cc">-- MoM Growth menggunakan Window Function LAG</span>
+        <span class="cf">SUM</span>(net_sales) - <span class="cf">LAG</span>(<span class="cf">SUM</span>(net_sales))
+            <span class="ck">OVER</span> (<span class="ck">ORDER BY</span> order_year, order_month) <span class="ck">AS</span> mom_growth,
+        <span class="cf">CAST</span>(<span class="cn">100.0</span> *
+            (<span class="cf">SUM</span>(net_sales) - <span class="cf">LAG</span>(<span class="cf">SUM</span>(net_sales))
+                <span class="ck">OVER</span> (<span class="ck">ORDER BY</span> order_year, order_month))
+            / <span class="cf">NULLIF</span>(<span class="cf">LAG</span>(<span class="cf">SUM</span>(net_sales))
+                <span class="ck">OVER</span> (<span class="ck">ORDER BY</span> order_year, order_month), <span class="cn">0</span>)
+        <span class="ck">AS</span> DECIMAL(<span class="cn">6,2</span>))          <span class="ck">AS</span> mom_pct
+    <span class="ck">FROM</span> dbo.sales_transactions
+    <span class="ck">GROUP BY</span> order_year, order_month, order_month_name
+    <span class="ck">ORDER BY</span> order_year, order_month;</div>
+          </div>
+
+          <!-- KEY FINDINGS -->
+          <div class="card">
+            <span class="label" data-i18n="sec_insight">Insight</span>
+            <div class="section-title" data-i18n="findings_title">Key Findings</div>
+            <div>
+              <div class="finding-item">
+                <div class="finding-icon">💡</div>
+                <div>
+                  <div class="finding-title" data-i18n="f1_title">Laptop Pro X1 adalah produk unggulan</div>
+                  <div class="finding-desc" data-i18n="f1_desc">Menyumbang Rp 260,1 Miliar atau sekitar 31% dari total net sales, jauh melampaui produk lainnya. Strategi upsell produk ini sangat potensial untuk meningkatkan revenue.</div>
+                </div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-icon">📍</div>
+                <div>
+                  <div class="finding-title" data-i18n="f2_title">Jawa Barat + Jawa Timur = 42% transaksi</div>
+                  <div class="finding-desc" data-i18n="f2_desc">Dua wilayah ini mendominasi volume order. Potensi ekspansi masih terbuka lebar di Kalimantan Timur dan Sulawesi Selatan yang baru berkontribusi ~9.5% masing-masing.</div>
+                </div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-icon">🔄</div>
+                <div>
+                  <div class="finding-title" data-i18n="f3_title">Online & Offline hampir seimbang (52% vs 48%)</div>
+                  <div class="finding-desc" data-i18n="f3_desc">Distribusi channel yang seimbang mengindikasikan strategi omnichannel yang baik. Investasi lebih pada channel online dapat mendorong pertumbuhan lebih efisien.</div>
+                </div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-icon">⚠️</div>
+                <div>
+                  <div class="finding-title" data-i18n="f4_title">Data mentah: 27.8% baris perlu pembersihan</div>
+                  <div class="finding-desc" data-i18n="f4_desc">Dari 2.500 baris, 694 baris dieliminasi karena data kotor. Implementasi validasi data real-time di sistem point-of-sale dapat mencegah masalah kualitas data di masa depan.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /main-col -->
+
+        <!-- ── RIGHT: sidebar ── -->
+        <div class="sidebar">
+
+          <div class="card">
+            <span class="label" data-i18n="sb_info">Info Project</span>
+            <ul class="info-list">
+              <li><span class="info-key" data-i18n="sb_status">Status</span>    <span class="info-val" style="color:#16a34a">✅ <span data-i18n="sb_done">Selesai</span></span></li>
+              <li><span class="info-key" data-i18n="sb_year">Tahun</span>       <span class="info-val">2025</span></li>
+              <li><span class="info-key" data-i18n="sb_cat">Kategori</span>     <span class="info-val" data-i18n="sb_cat_val">Dashboard</span></li>
+              <li><span class="info-key" data-i18n="sb_raw">Dataset</span>      <span class="info-val">2.500 rows (raw)</span></li>
+              <li><span class="info-key" data-i18n="sb_clean">Clean Data</span> <span class="info-val">1.806 rows</span></li>
+              <li><span class="info-key" data-i18n="sb_red">Reduction</span>    <span class="info-val">27.8%</span></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <span class="label">Tech Stack</span>
+            <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px">
+              <div class="stack-item"><span style="font-size:1.3rem">🐍</span><div><div class="stack-item-title">Python 3</div><div class="stack-item-sub">Pandas, NumPy, Regex</div></div></div>
+              <div class="stack-item"><span style="font-size:1.3rem">🗄️</span><div><div class="stack-item-title">SQL Server</div><div class="stack-item-sub">T-SQL, SSMS, Window Functions</div></div></div>
+              <div class="stack-item"><span style="font-size:1.3rem">📊</span><div><div class="stack-item-title">Looker Studio</div><div class="stack-item-sub">Charts, Filters, KPI Tiles</div></div></div>
+              <div class="stack-item"><span style="font-size:1.3rem">📁</span><div><div class="stack-item-title">CSV / Excel</div><div class="stack-item-sub" data-i18n="stack_csv_sub">Input/Output format</div></div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="label" data-i18n="sb_dl">Download Files</span>
+            <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px">
+              <a href="/project/project1/dataset_raw/sales_data_raw.csv" download class="dl-item">
+                <span style="font-size:1.2rem">📥</span>
+                <div><div class="dl-item-title">sales_data_raw.csv</div><div class="dl-item-sub" data-i18n="dl_raw">Dataset mentah · 2.500 baris</div></div>
+              </a>
+              <a href="/project/project1/dataset_clean/sales_data_clean.csv" download class="dl-item">
+                <span style="font-size:1.2rem">✅</span>
+                <div><div class="dl-item-title">sales_data_clean.csv</div><div class="dl-item-sub" data-i18n="dl_clean">Data bersih · 1.806 baris</div></div>
+              </a>
+              <a href="/project/project1/python_cleaning/data_cleaning.py" download class="dl-item">
+                <span style="font-size:1.2rem">🐍</span>
+                <div><div class="dl-item-title">data_cleaning.py</div><div class="dl-item-sub" data-i18n="dl_py">Script Python cleaning</div></div>
+              </a>
+              <a href="/project/project1/sql_analysis/sales_analysis.sql" download class="dl-item">
+                <span style="font-size:1.2rem">🗄️</span>
+                <div><div class="dl-item-title">sales_analysis.sql</div><div class="dl-item-sub" data-i18n="dl_sql">Query SQL Server · 10 analisis</div></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="card stats-dark">
+            <span class="label" style="color:var(--g400)" data-i18n="sb_stats">Statistik Data</span>
+            <div class="stats-grid" style="margin-top:10px">
+              <div class="stat-tile"><div class="stat-tile-val">835,8M</div><div class="stat-tile-lbl">Total Net Sales (Rp)</div></div>
+              <div class="stat-tile"><div class="stat-tile-val">1.806</div><div class="stat-tile-lbl" data-i18n="st_tx">Clean Transactions</div></div>
+              <div class="stat-tile"><div class="stat-tile-val">13,6%</div><div class="stat-tile-lbl" data-i18n="st_disc">Avg Discount Rate</div></div>
+              <div class="stat-tile"><div class="stat-tile-val" data-i18n="st_yr">3 Tahun</div><div class="stat-tile-lbl" data-i18n="st_cov">Data Coverage</div></div>
+            </div>
+          </div>
+
+        </div><!-- /sidebar -->
+      </div><!-- /two-col -->
+    </div><!-- /content -->
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer>
+      <div class="footer-logo">Ilham Hafizt<span style="color:#4ade80">.</span></div>
+      <div class="footer-sub">Data Analyst · Python · SQL Server · Looker Studio</div>
+      <div class="footer-links">
+        <a href="/index.html" data-i18n="foot_port">Portfolio</a>
+        <a href="https://github.com/ilhamhafizt" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/ilham-hafizt-50a99a394/" target="_blank">LinkedIn</a>
+        <a href="mailto:ilhamhafizt9@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Ilham Hafizt. All Rights Reserved.</div>
+    </footer>
+
+    <!-- ═══════ CHARTS ═══════ -->
+    <script src="/project/project1/js/project1.js"></script>
+</body>
+</html>
