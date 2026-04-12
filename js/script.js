@@ -208,7 +208,7 @@ const projects = [
         id: 1, category: 'dashboard', emoji: '📊',
         title: { id: 'Sales Performance Dashboard',   en: 'Sales Performance Dashboard' },
         desc:  { id: 'Dashboard interaktif untuk memantau performa penjualan bulanan menggunakan Looker Studio.', en: 'Interactive dashboard to monitor monthly sales performance using Looker Studio.' },
-        tags: ['Looker Studio', 'SQL'], link: '#',
+        tags: ['Looker Studio', 'SQL'], link: 'project/project1/project1.html',
     },
     {
         id: 2, category: 'analysis', emoji: '🛒',
