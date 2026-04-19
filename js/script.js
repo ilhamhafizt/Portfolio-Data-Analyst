@@ -421,7 +421,7 @@ function sendViaWhatsApp() {
 
     const waNumber = '6289653306722';
     const text = encodeURIComponent(
-        `Halo Ilham! 👋\n\n*Nama:* ${name}\n*Email:* ${email || '-'}\n*Subjek:* ${subject}\n\n*Pesan:*\n${message}`
+        `Halo Ilham! \n\n*Nama:* ${name}\n*Email:* ${email || '-'}\n*Subjek:* ${subject}\n\n*Pesan:*\n${message}`
     );
     window.open(`https://wa.me/${waNumber}?text=${text}`, '_blank');
 };
