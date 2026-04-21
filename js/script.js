@@ -289,8 +289,8 @@ const projects = [
         desc_en:  'Python-based analysis of customer purchase patterns, segmentation using RFM model, and cohort retention analysis.',
         desc_id:  'Analisis berbasis Python terhadap pola pembelian pelanggan, segmentasi menggunakan model RFM, dan analisis retensi kohort.',
         tags:     ['Python', 'Pandas', 'Matplotlib'],
-        link:     '#',
-        github:   'https://github.com/ilhamhafizt',
+        link:     'https://ilhamhafizt.github.io/Customer-Behavior-Analysis/',
+        github:   'https://github.com/ilhamhafizt/Customer-Behavior-Analysis',
     },
     {
         emoji:    '🤖',
@@ -303,7 +303,7 @@ const projects = [
         desc_id:  'Model klasifikasi biner untuk memprediksi churn pelanggan menggunakan Scikit-learn dengan rekayasa fitur dan evaluasi model.',
         tags:     ['Python', 'Scikit-learn', 'Kaggle'],
         link:     '#',
-        github:   'https://github.com/ilhamhafizt',
+        github:   '#',
     },
     {
         emoji:    '📈',
@@ -329,7 +329,7 @@ const projects = [
         desc_id:  'Analisis data eksploratif pada data produksi pertanian Indonesia untuk mengidentifikasi tren hasil daerah dan pola musiman.',
         tags:     ['Python', 'NumPy', 'Seaborn'],
         link:     '#',
-        github:   'https://github.com/ilhamhafizt',
+        github:   '#',
     },
     {
         emoji:    '💰',
@@ -342,7 +342,7 @@ const projects = [
         desc_id:  'Model regresi untuk memprediksi harga rumah berdasarkan lokasi, ukuran, dan fitur fasilitas menggunakan gradient boosting.',
         tags:     ['Python', 'XGBoost', 'Kaggle'],
         link:     '#',
-        github:   'https://github.com/ilhamhafizt',
+        github:   '#',
     },
 ];
 
