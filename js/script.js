@@ -378,13 +378,13 @@ function renderProjects(filter = 'all') {
                 <!-- Actions (INI DARI JS 1) -->
                 <div class="flex gap-2 mt-2">
                     <!-- View Project -->
-                    <a href="${p.link}" 
+                    <a href="${p.link} target="_blank" rel="noopener noreferrer" 
                         class="flex-1 text-center text-xs font-semibold bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg transition-colors"
                         data-en="View Project" data-id="Lihat Proyek">
                         View Project
                     </a>
                     <!-- GitHub -->
-                    <a href="${p.github}" target="_blank"
+                    <a href="${p.github}" target="_blank rel="noopener noreferrer"
                         class="flex-1 text-center text-xs font-semibold border border-green-300 hover:bg-green-50 text-green-700 px-3 py-2 rounded-lg transition-colors">
                         GitHub
                     </a>
