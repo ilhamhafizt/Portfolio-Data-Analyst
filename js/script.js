@@ -384,7 +384,7 @@ function renderProjects(filter = 'all') {
                         View Project
                     </a>
                     <!-- GitHub -->
-                    <a href="${p.github}" target="_blank rel="noopener noreferrer"
+                    <a href="${p.github}" target="_blank" rel="noopener noreferrer"
                         class="flex-1 text-center text-xs font-semibold border border-green-300 hover:bg-green-50 text-green-700 px-3 py-2 rounded-lg transition-colors">
                         GitHub
                     </a>
